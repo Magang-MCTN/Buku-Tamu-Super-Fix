@@ -62,7 +62,7 @@ class Surat2BukuTamuDuri extends Model
     }
 
     // Definisi relasi dengan LokasiTujuan
-    public function lokasiTujuan()
+    public function LokasiTujuan()
     {
         return $this->belongsTo(LokasiTujuan::class, 'id_lokasi', 'id_lokasi');
     }

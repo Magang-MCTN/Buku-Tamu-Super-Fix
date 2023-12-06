@@ -51,4 +51,26 @@ class Surat2BukuTamu extends Model
     {
         return $this->belongsTo(PeriodeTamu::class, 'id_periode', 'id_periode');
     }
+    public function scopeGetStatusCountsByLocation($query, $locationId)
+    {
+        return $query
+            ->whereHas('surat1', function ($query) use ($locationId) {
+                $query->where('id_lokasi', $locationId);
+            })
+            ->selectRaw('
+                SUM(CASE WHEN id_status_surat = 2 THEN 1 ELSE 0 END) as disetujui_count,
+                SUM(CASE WHEN id_status_surat = 3 THEN 1 ELSE 0 END) as ditolak_count,
+                SUM(CASE WHEN id_status_surat = 1 THEN 1 ELSE 0 END) as dalam_proses_count
+            ')
+            ->first();
+    }
+
+    public function scopeGetAllPengajuanByLocation($query, $locationId)
+    {
+        return $query
+            ->whereHas('surat1', function ($query) use ($locationId) {
+                $query->where('id_lokasi', $locationId);
+            })
+            ->get();
+    }
 }

@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
  [Master Stylesheet]
 
-  Project:	Star Admin2 
+  Project:	Star Admin2
   Version:	1.2.1
 -------------------------------------------------------------------*/
 /*-------------------------------------------------------------------
@@ -9346,7 +9346,11 @@ progress {
 .col {
   flex: 1 0 0%;
 }
-
+.custom-icon {
+    color: #097b96;
+    width: 40px; /* Sesuaikan lebar ikon sesuai kebutuhan */
+    /* Tambahkan properti lain sesuai kebutuhan */
+}
 .row-cols-auto > * {
   flex: 0 0 auto;
   width: auto;
@@ -12860,9 +12864,7 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 }
 
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
+
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
@@ -28824,7 +28826,7 @@ div.tagsinput span.tag a {
 }
 
 .auth .brand-logo img {
-  width: 90px;
+  width: 150px;
 }
 
 .auth form .form-group {
@@ -28907,7 +28909,7 @@ div.tagsinput span.tag a {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 97px);
-  background: #F4F5F7;
+  background: #414141;
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   padding: 0;
@@ -28946,7 +28948,7 @@ div.tagsinput span.tag a {
   align-items: center;
   white-space: nowrap;
   padding: 10px 35px 10px 35px;
-  color: #484848;
+  color: #fff;
   border-radius: 0px 20px 20px 0px;
   -webkit-transition-duration: 0.45s;
   -moz-transition-duration: 0.45s;
@@ -28971,7 +28973,7 @@ div.tagsinput span.tag a {
   font-size: 22px;
   line-height: 1;
   margin-right: 1rem;
-  color: #484848;
+  color: #fff;
 }
 
 .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
@@ -28988,7 +28990,7 @@ div.tagsinput span.tag a {
   -moz-osx-font-smoothing: grayscale;
   margin-left: auto;
   margin-right: 0;
-  color: #bfccda;
+  color: #fff;
 }
 
 .rtl .sidebar .nav .nav-item .nav-link i.menu-arrow {
@@ -29040,7 +29042,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #fff;
+  background: #868686;
   position: relative;
   font-weight: bold;
   font-size: 13px;
@@ -29049,7 +29051,7 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item.active > .nav-link i,
 .sidebar .nav .nav-item.active > .nav-link .menu-title,
 .sidebar .nav .nav-item.active > .nav-link .menu-arrow {
-  color: #1F3BB3;
+  color: #fff;
 }
 
 .sidebar .nav .nav-item.active > .nav-link .menu-title {
@@ -29063,11 +29065,11 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item:hover > .nav-link i,
 .sidebar .nav .nav-item:hover > .nav-link .menu-title,
 .sidebar .nav .nav-item:hover > .nav-link .menu-arrow {
-  color: #1F3BB3;
+  color: #868686;
 }
 
 .sidebar .nav .nav-item.nav-category {
-  color: #404040;
+  color: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.13);
   margin: 0 30px;
   font-size: 11px;
@@ -29092,7 +29094,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
-  background: #fff;
+  background: #414141;
   color: #fff;
 }
 
@@ -29102,8 +29104,8 @@ div.tagsinput span.tag a {
 
 .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] {
   border-radius: 8px 8px 0 0;
-  background: #fff;
-  color: #1F3BB3;
+  /* background: #fff; */
+  color: #fff;
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item.active {
@@ -29115,7 +29117,7 @@ div.tagsinput span.tag a {
   margin-top: 0;
   list-style: none;
   padding: 0.25rem 0 0 3.07rem;
-  background: #fff;
+  /* background: #fff; */
   padding-bottom: 12px;
 }
 
@@ -29130,11 +29132,11 @@ div.tagsinput span.tag a {
   position: absolute;
   margin-top: 16px;
   border-radius: 50%;
-  background: #b2b2b2;
+  background: white;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link {
-  color: #484848;
+  color: #fff;
   padding: 0.7rem 1rem;
   position: relative;
   font-size: 12px;
@@ -29148,7 +29150,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-  color: #1F3BB3;
+  color: #fff;
   background: transparent;
 }
 
@@ -29166,7 +29168,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar-dark .sidebar .nav .nav-item .nav-link .sidebar-icon-only {
-  color: #1E283D;
+  color: #fff;
 }
 
 .sidebar-dark .sidebar .nav .nav-item .nav-link i {
@@ -29288,14 +29290,14 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper {
-  background: #F4F5F7;
+  background: #414141;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
   width: 220px;
   height: 97px;
-  padding: 20px 35px;
+  padding: 0px 25px;
 }
 
 .sidebar-dark .navbar .navbar-brand-wrapper {
@@ -29304,7 +29306,7 @@ div.tagsinput span.tag a {
 
 @media (max-width: 991px) {
   .sidebar-dark .navbar .navbar-brand-wrapper {
-    background: #F4F5F7;
+    background: #fff;
   }
 }
 
@@ -29332,7 +29334,8 @@ div.tagsinput span.tag a {
 
 .navbar .navbar-brand-wrapper .navbar-brand img {
   max-width: 100%;
-  height: 34px;
+  height: 85px;
+  width: auto;
   margin: auto;
   vertical-align: middle;
 }
@@ -29392,7 +29395,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-menu-wrapper {
-  background: #F4F5F7;
+  background: #097B96;
   transition: width 0.25s ease;
   -webkit-transition: width 0.25s ease;
   -moz-transition: width 0.25s ease;
@@ -29701,7 +29704,7 @@ div.tagsinput span.tag a {
   font-weight: normal;
   font-size: 28px;
   line-height: 38px;
-  color: #8D8D8D;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
@@ -29715,13 +29718,13 @@ div.tagsinput span.tag a {
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
-  color: #8D8D8D;
+  color: #ffffff;
   margin-bottom: 0;
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .dropdown-bordered {
   padding: 8px 15px;
-  border: 1px solid #DFDFDF;
+  border: 1px solid #ffffff;
   border-radius: 6px;
   font-style: normal;
   font-weight: 500;
@@ -30617,7 +30620,7 @@ div.tagsinput span.tag a {
     background: #fff;
   }
   .sidebar-dark.sidebar-icon-only .navbar .navbar-brand-wrapper .navbar-toggler {
-    color: #484848;
+    color: #414141;
   }
   .sidebar-icon-only .navbar .navbar-brand-wrapper .brand-logo {
     display: none;
@@ -30648,7 +30651,7 @@ div.tagsinput span.tag a {
     position: static;
   }
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item .nav-link {
-    color: #484848;
+    color: #414141;
   }
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title,
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link .badge, .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-sub-title {
@@ -30662,7 +30665,7 @@ div.tagsinput span.tag a {
     border-radius: 5px 0 0 5px;
   }
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title {
-    background: #484848;
+    background: #414141;
   }
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-icon {
     margin-right: 0;
@@ -30714,7 +30717,7 @@ div.tagsinput span.tag a {
     box-shadow: -4px 0px 7px 0px rgba(182, 185, 189, 0.25);
   }
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title {
-    color: #484848;
+    color: #414141;
   }
   .sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title:after {
     display: none;
@@ -30737,7 +30740,7 @@ div.tagsinput span.tag a {
     box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
   }
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapse, .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
-    background: #232227;
+    background: #414141;
   }
   .rtl.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapse, .rtl.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
     left: auto;

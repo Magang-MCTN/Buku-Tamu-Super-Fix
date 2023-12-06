@@ -16,10 +16,10 @@ class DashboardController extends Controller
 
         switch ($userRole) {
             case 1:
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.users.index');
                 break;
             case 2:
-                return redirect()->route('admin.jkt.dashboard');
+                return redirect()->route('admin.dashboard');
                 break;
             case 3:
                 return redirect()->route('tuanrumah.home');
@@ -34,7 +34,7 @@ class DashboardController extends Controller
                 return redirect()->route('security.home');
                 break;
             case 7:
-                return redirect()->route('tuan.dashboard');
+                return redirect()->route('adminpku.dashboard');
                 break;
                 // Tambahkan case lain sesuai dengan peran pengguna lainnya
             default:

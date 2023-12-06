@@ -6,10 +6,13 @@
         <h2 class="fw-bold" style="color: #097B96;">Formulir Buku Tamu</h2>
         <h1 class="fw-bold" style="font-size: 200%">PT Mandau Cipta Tenaga Nusantara</h1>
     </div>
-    <div style="display: none">
-        <h2>Formulir Data Kendaraan</h2>
+    <div style="">
+
         <p> ID SURAT ANDA ADALAH {{ $surat1_id }} </p>
+
     </div>
+    <form id="form-kendaraan">
+        @csrf
     <div class="card m-5">
         <div class="card-body">
             <div class="container">
@@ -28,12 +31,13 @@
                     </div>
                 </div>
                 <hr>
-                <form id="form-kendaraan">
-                    @csrf
-                    <div style="display: none;">
-                        <label for="id_surat_1">ID SURAT:</label>
-                        <input type="text" name="id_surat_1" id="id_surat_1" required value="{{ $surat1_id }}" disabled>
-                    </div>
+
+
+
+                        <div class="col form-group">
+                            <label for="id_surat_1" style="display: none">ID SURAT:</label>
+                            <input type="text" style="display: none" class="form-control" name="id_surat_1" id="id_surat_1" required value="{{ $surat1_id }}" disabled>
+                        </div>
                     <div class="row">
                         <div class="col form-group">
                             <label for="tipe_mobil">Tipe Mobil</label>
@@ -92,7 +96,7 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <!-- <th>ID SURAT 1</th> -->
+                               <th>ID SURAT 1</th>
                                 <th>Tipe Mobil</th>
                                 <th>Warna Mobil</th>
                                 <th>Nomor Polisi</th>
@@ -159,6 +163,7 @@
 
             // Tambahkan data kendaraan ke tabel sementara
             let newRow = `<tr>
+                <td>${id_surat_1}</td>
                 <td>${tipe_mobil}</td>
                 <td>${warna}</td>
                 <td>${nomor_polisi}</td>

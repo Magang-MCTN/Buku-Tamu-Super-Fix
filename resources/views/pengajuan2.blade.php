@@ -18,13 +18,13 @@
                                 <div class="d-flex rounded-circle justify-content-center mx-3" style="border-radius: 50%; width: 30px; height: 30px; background-color: #097B96">
                                     <i class="mdi mdi-clipboard-outline d-flex" style="color:white; align-items: center;"></i>
                                 </div>
-                                <h2 class="fw-bold d-flex" style="color: #097B96;">1. Data Diri Tamu</h2>
+                                <h3 class="fw-bold d-flex" style="color: #097B96;">1. Data Diri Tamu</h3>
                             </div>
                             <div class="col d-flex justify-content-center">
                                 <div class="d-flex rounded-circle justify-content-center mx-3" style="border-radius: 50%; width: 30px; height: 30px; background-color: #000; opacity: 0.32">
                                     <i class="mdi mdi-clipboard-outline d-flex" style="color:white; align-items: center;"></i>
                                 </div>
-                                <h2 class="fw-bold d-flex" style="opacity: 0.32;">2. Data Kendaraan</h2>
+                                <h3 class="fw-bold d-flex" style="opacity: 0.32;">2. Data Kendaraan</h3>
                             </div>
                         </div>
                         <hr>
@@ -130,7 +130,7 @@
                 <td>${masa_berlaku_ktp}</td>
                 <td>${jabatan}</td>
                 <td>${foto_ktp.name}</td>
-                <td><button class="hapus">Hapus</button></td>
+                <td><button class="hapus btn btn-danger">Hapus</button></td>
             </tr>`;
             $('#tabelSementara').append(newRow);
 

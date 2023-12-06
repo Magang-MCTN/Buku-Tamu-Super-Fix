@@ -52,12 +52,12 @@
     <div class="container">
         {{-- <p><strong>Kode Unik:</strong> {{ $surat2->kode_unik }}</p> --}}
 
-        <p><strong style="float: right;" >GATE 117/125</strong></p>
-        <p><strong>Asal Perusahaan:</strong> {{ $surat2->surat1->asal_perusahaan }}</p>
-        <p><strong>Tujuan Keperluan:</strong> {{ $surat2->surat1->tujuan_keperluan }}</p>
-        <p><strong>Periode:</strong> {{ $surat2->surat1->periode->tanggal_masuk }} - {{ $surat2->surat1->periode->tanggal_keluar }}</p>
-        <p><strong>Jam Kedatangan:</strong> {{ $surat2->surat1->periode->jam_kedatangan }}</p>
+        <p><strong>Kode Surat &nbsp;&nbsp;:</strong> {{ $surat2->kode_unik }}</p>
+        <p><strong>Asal Perusahaan&nbsp;:</strong> {{ $surat2->surat1->asal_perusahaan }}</p>
 
+        <p><strong>Periode &nbsp;&nbsp;:</strong> {{ $surat2->surat1->periode->tanggal_masuk->format('d-m-Y') }} s.d. {{ $surat2->surat1->periode->tanggal_keluar->format('d-m-Y') }}</p>
+        <p><strong>Jam Kedatangan&nbsp;:</strong> {{ explode(' ', $surat2->surat1->periode->jam_kedatangan)[1] }}</p>
+        <p><strong>Tujuan Keperluan&nbsp;:</strong> {{ $surat2->surat1->tujuan_keperluan }}</p>
         <h2>Data Tamu</h2>
         <table>
             <thead>

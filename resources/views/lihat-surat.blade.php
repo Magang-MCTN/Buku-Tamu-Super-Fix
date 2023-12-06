@@ -7,7 +7,7 @@
             <div class="container table-responsive" style="overflow-x:auto;" >
                 <div class="row">
                     <div class="col">
-                        <h3 class="fw-bold">FORM IZIN MASUK PT MCTN</h3>
+                        <h3 class="fw-bold">FORM IZIN MASUK PT MCTN </h3>
                         <p><strong>Kode Surat &nbsp;:</strong> {{ $surat2->kode_unik }}</p>
                         <p><strong>Asal Perusahaan:</strong> {{ $surat2->surat1->asal_perusahaan }}</p>
                         <p><strong>Tujuan Keperluan:</strong> {{ $surat2->surat1->tujuan_keperluan }}</p>
@@ -17,9 +17,16 @@
                         {{-- <p><strong>Jam Kedatangan:</strong> {{ $surat2->surat1->periode->jam_kedatangan }}</p> --}}
                         {{-- <p><strong>From Izin Masuk Duri Field PHR - MCTN</strong></p> --}}
                     </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-end">
+                            <h4 class="border" style="padding: 10px; border-radius: 6px"> {{ $surat2->surat1->lokasi->nama_lokasi }}</h4>
+                        </div>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a href="" class="btn btn-primary">Cetak Dokumen</a>
+                    @if ($surat2->statusSurat->id_status_surat == 2)
+                        <a href="/cetak-surat/{{$surat2->id_surat_2_duri}}" class="btn btn-primary">Cetak Dokumen</a>
+                    @endif
                 </div>
 
                 <h4 class="fw-bold">Data Tamu</h4>
@@ -31,7 +38,7 @@
                             <th>No KTP</th>
                             <th>Tanggal Masa Berlaku</th>
                             <th>Jabatan</th>
-                            <th>Foto Kartu Identitas</th>
+                            {{-- <th>Foto Kartu Identitas</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -42,13 +49,13 @@
                                 <td>{{ $tamu->nik_tamu }}</td>
                                 <td>{{ $tamu->masa_berlaku_ktp }}</td>
                                 <td>{{ $tamu->jabatan }}</td>
-                                <td><a href="" class="badge" style="background-color: #097B96; color: white; text-decoration: none;">Lihat Foto</a></td>
-                            </tr>
+                                {{-- <td><a href="" class="badge" style="background-color: #097B96; color: white; text-decoration: none;">Lihat Foto</a></td>
+                            </tr> --}}
                         @endforeach
                     </tbody>
                 </table>
+                <h4 class="fw-bold mt-4">Data Kendaraan</h4>
 
-                <h4 class="fw-bold mt-4">Data Kendaraan</h4 >
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -60,7 +67,7 @@
                             <th>Masa Berlaku STNK</th>
                             <th>Masa Berlaku KIR</th>
                             <th>Masa Berlaku SIM</th>
-                            <th>Foto</th>
+                            {{-- <th>Foto</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -79,13 +86,13 @@
                                 <td>{{ $kendaraan->masa_berlaku_stnk }}</td>
                                 <td>{{ $kendaraan->masa_berlaku_kir }}</td>
                                 <td>{{ $kendaraan->masa_berlaku_sim }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="" class="badge my-1" style="background-color: #097B96; color: white; text-decoration: none;">Foto SIM</a><br>
                                     <a href="" class="badge my-1" style="background-color: #097B96; color: white; text-decoration: none;">Foto STNK</a><br>
                                     <a href="" class="badge my-1" style="background-color: #097B96; color: white; text-decoration: none;">Foto Kendaraan</a><br>
                                     <div class="">
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                         @endif
@@ -116,22 +123,58 @@
                     </tbody>
                 </table> --}}
 
-                <h2>Kendaraan M</h2>
-                <p><strong>
+                <div class="row d-flex">
+                    <h4 class="fw-bold mt-4">Kendaraan </h4>
+                    <div class="col">
                         @if ($surat2->surat1->kendaraan->isNotEmpty())
-                            Membawa Kendaraan Pribadi
+                        <div class="ms-5">
+                            <div class="me-5 form-check">
+                                <input type="checkbox" class="form-check-input" id="kendaraan" checked disabled>
+                                <label class="form-check-label" for="kendaraan">Membawa Kendaraan Pribadi</label>
+                                <input type="checkbox" class="form-check-input" id="kendaraan" disabled>
+                                <label class="form-check-label" for="kendaraan">Dijemput MCTN</label>
+                            </div>
+                        </div>
                         @else
-                            Di Jemput MCTN.
+                        <div class="ms-5">
+                            <div class="me-5 form-check">
+                                <input type="checkbox" class="form-check-input" id="kendaraan" disabled>
+                                <label class="form-check-label" for="kendaraan">Membawa Kendaraan Pribadi</label>
+                                <input type="checkbox" class="form-check-input" id="kendaraan" checked disabled>
+                                <label class="form-check-label" for="kendaraan">Dijemput MCTN</label>
+                            </div>
+                        </div>
                         @endif
+                    </div>
 
-                        @if ($surat2->surat1->pengawalan == 'ya')
-                            Butuh Pengawalan
-                        @elseif ($surat2->surat1->pengawalan == 'tidak')
-                            Tidak Butuh Pengawalan
-                        @else
-                        Tidak Butuh Pengawalan
-                        @endif</strong>
-                    </p>
+                    @if ( $surat2->surat1->pengawalan == 'Ya' )
+                    <h4 class="fw-bold mt-4">Butuh Pengawalan</h4>
+                    <div class="container mx-5">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked disabled>
+                            <label class="form-check" for="inlineRadio1">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" disabled>
+                            <label class="form-check" for="inlineRadio2">Tidak</label>
+                        </div>
+                    </div>
+
+                    @else
+                    <h4 class="fw-bold mt-4">Butuh Pengawalan</h4>
+                    <div class="container mx-5">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" disabled>
+                            <label class="form-check" for="inlineRadio1">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked disabled>
+                            <label class="form-check" for="inlineRadio2">Tidak</label>
+                        </div>
+                    </div>
+
+                    @endif
+                </div>
             </div>
         </div>
     </div>

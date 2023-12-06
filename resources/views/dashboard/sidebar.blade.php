@@ -195,7 +195,7 @@
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="/admin/users/create">Tambah User</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
               <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">History</a></li>
             </ul>
           </div>
@@ -211,9 +211,57 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="/persetujuan">Persetujuann</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">History</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/persetujuan">Persetujuan</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
+              <li class="nav-item"> <a class="nav-link" href="/history">History</a></li>
+            </ul>
+          </div>
+        </li>
+        @elseif (Auth::user()->id_role === 2)
+        <li class="nav-item nav-category">Persetujuan</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title">Persetujuan</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/persetujuanadminjkt">Persetujuan</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
+              <li class="nav-item"> <a class="nav-link" href="/historyadminjkt">History</a></li>
+            </ul>
+          </div>
+        </li>
+        @elseif (Auth::user()->id_role === 7)
+        <li class="nav-item nav-category">Persetujuan</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title">Persetujuan</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/persetujuanadminpku">Persetujuan</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
+              <li class="nav-item"> <a class="nav-link" href="/historyadminpku">History</a></li>
+            </ul>
+          </div>
+        </li>
+        @elseif (Auth::user()->id_role === 5)
+        <li class="nav-item nav-category">Persetujuan</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title">Persetujuan</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/persetujuanadminduri">Persetujuan</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
+              <li class="nav-item"> <a class="nav-link" href="/historyadminduri">History</a></li>
             </ul>
           </div>
         </li>

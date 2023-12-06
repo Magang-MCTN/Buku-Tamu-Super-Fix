@@ -15,7 +15,7 @@ class Send extends Mailable
 
     public function __construct($idsurat1)
     {
-        $this->$idsurat1 = $idsurat1;
+        $this->idsurat1 = $idsurat1;
     }
     /**
      * Build the message.

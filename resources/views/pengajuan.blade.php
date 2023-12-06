@@ -56,9 +56,9 @@
                                 <label for="nama_lokasi" class="form-label">Lokasi yang ingin dikunjungi:</label>
                                 <select id="nama_lokasi" class="form-select form-control" name="nama_lokasi" required>
                                     <option value="" selected disabled> Lokasi </option>
-                                    <option value="1">Jakarta</option>
-                                    <option value="2">Pekan Baru</option>
-                                    <option value="3">Duri</option>
+                                    <option value="1">Kantor MCTN Jakarta</option>
+                                    <option value="2">Kantor MCTN Pekanbaru</option>
+                                    <option value="3">Ladang Minyak Duri MCTN</option>
                                 </select>
                             </div>
                             <div class="col form-group">

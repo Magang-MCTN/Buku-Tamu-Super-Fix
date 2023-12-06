@@ -10,10 +10,44 @@ class AdminDuriController extends Controller
     public function index()
     {
         $suratToApprove = Surat2BukuTamuDuri::with(['surat1', 'statusSurat'])
-            ->where('id_status_surat', 6)
+            ->where(function ($query) {
+                $query->where('id_status_surat', 6)
+                    ->orWhere('id_status_surat', 2);
+            })
+            ->whereHas('surat1', function ($query) {
+                $query->where('id_lokasi', 3);
+            })
             ->get();
 
         return view('dashboard.admin_duri.index', compact('suratToApprove'));
+    }
+    public function persetujuanadminduri()
+    {
+        $surat1 = Surat2BukuTamuDuri::with(['surat1', 'statusSurat'])
+            ->where(function ($query) {
+                $query->where('id_status_surat', 6);
+            })
+            ->whereHas('surat1', function ($query) {
+                $query->where('id_lokasi', 3);
+            })
+            ->get();
+
+
+        return view('dashboard.admin_duri.persetujuan', compact('surat1'));
+    }
+    public function historyadminduri()
+    {
+        $surat1 = Surat2BukuTamuDuri::with(['surat1', 'statusSurat'])
+            ->where(function ($query) {
+                $query->where('id_status_surat', 2, 3);
+            })
+            ->whereHas('surat1', function ($query) {
+                $query->where('id_lokasi', 3);
+            })
+            ->get();
+
+
+        return view('dashboard.admin_duri.history', compact('surat1'));
     }
     public function show($id_surat_2_duri)
     {

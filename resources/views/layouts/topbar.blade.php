@@ -29,11 +29,11 @@
             <a style="font-size: 120%; color: white; opacity: 0.6;" class="fw-bold nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               PENGUMUMAN
             </a>
-            <ul class="dropdown-menu">
+            {{-- <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="">Pengajuan</a></li>
               <li><a class="dropdown-item" href="">Status</a></li>
               <li><a class="dropdown-item" href="">Feedback</a></li>
-            </ul>
+            </ul> --}}
           </li>
           <li class="nav-item">
             <a style="font-size: 120%; color: white; opacity: 0.6;" class="fw-bold nav-link" href="#">REGISTRASI</a>
@@ -47,5 +47,5 @@
         </ul>
 
       </div>
-    </div>
-  </nav>
+    </div>
+    </nav>

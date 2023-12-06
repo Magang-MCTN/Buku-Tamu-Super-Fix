@@ -59,7 +59,25 @@ class Surat1BukuTamu extends Model
     {
         return $this->hasMany(DataDiriBukuTamu::class, 'id_surat_1', 'id_surat_1');
     }
-
+    public function scopeGetStatusCounts($query, $email)
+    {
+        return $query
+            ->where('email_pic', $email)
+            ->selectRaw('
+                SUM(CASE WHEN id_status_surat = 2 THEN 1 ELSE 0 END) as disetujui_count,
+                SUM(CASE WHEN id_status_surat = 3 THEN 1 ELSE 0 END) as ditolak_count,
+                SUM(CASE WHEN id_status_surat = 1 THEN 1 ELSE 0 END) as dalam_proses_count
+            ')
+            ->first();
+    }
+    public function scopeGetAllPengajuan($query, $email)
+    {
+        return $query
+            ->where(function ($query) use ($email) {
+                $query->where('email_pic', $email);
+            })
+            ->get();
+    }
     // DataDiriBukuTamu.php
 
 

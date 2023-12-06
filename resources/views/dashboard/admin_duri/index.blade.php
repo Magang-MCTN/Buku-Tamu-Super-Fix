@@ -97,7 +97,8 @@
             </div>
 
             <div class="container">
-                <h1>Data Surat 2</h1>
+                <div class="card mt-2">
+                    <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>

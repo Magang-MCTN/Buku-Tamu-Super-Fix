@@ -34,7 +34,7 @@
                                 <div class="card justify-content-center">
                                     <div class="card-body text-left pt-5 px-sm-5">
                                         <div class="brand-logo d-flex justify-content-center ">
-                                            <img src="dashboard/template/images/MCTN.png" alt="logo">
+                                            <img src="logo.png" alt="logo">
                                         </div>
                                         <h4 class="my-auto p-2 text-center">PT Mandau Cipta Tenaga Nusantara</h3>
                                     </div>

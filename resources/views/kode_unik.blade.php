@@ -9,10 +9,10 @@
             <div class="card-body">
                 <h1>TERIMA KASIH</h1>
                 <span>Status: Terkirim</span><br><br>
-                <span>MCTN REQ: <input type="text" value="{{ $kodeUnik }}" id="unique_key" disabled></span><i class="mdi mdi-content-copy border btn-secondary px-2 py-1 ms-2" onclick="copy()" style="border-radius: 5px"></i><br><br>
+                <span>MCTN REQ: <input type="text" value="{{ $kodeUnik }} {{ $kodeUnikkantor }}  " id="unique_key" disabled></span><i class="mdi mdi-content-copy border btn-secondary px-2 py-1 ms-2" onclick="copy()" style="border-radius: 5px"></i><br><br>
                 <p>Silahkan simpan kode diatas untuk melihat status request anda di kolom status.</p>
                 <p>Terima Kasih sudah mengirim pengajuan kunjungan ke PT Mandau Cipta Tenaga Nusantara</p>
-                <a class="btn btn-primary mt-4" href="/form-kunjungan">Kembali</a>
+                <a class="btn btn-primary mt-4" href="/pengajuan-tamu/create">Kembali</a>
             </div>
         </div>
     </div>

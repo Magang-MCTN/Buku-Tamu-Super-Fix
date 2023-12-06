@@ -27,7 +27,7 @@
                     <div class="card col-lg-4 mx-auto">
                         <div class="card-body text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo d-flex justify-content-center">
-                                <img src="dashboard/template/images/MCTN.png" alt="logo">
+                                <img src="logo1.png" alt="logo">
                             </div>
                             <h5 class="d-flex justify-content-center">PT Mandau Cipta Tenaga Nusantara</h5><br>
                             <p class="fw-light">Sign in to continue.</p>

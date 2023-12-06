@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminDuriController;
+use App\Http\Controllers\AdminJKTController;
+use App\Http\Controllers\AdminPkuController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PhrController;
@@ -32,7 +35,7 @@ Route::post('/datatamu', [TamuController::class, 'datatamu'])->name('datatamu.st
 Route::post('/simpanTamu', [TamuController::class, 'simpanTamu'])->name('simpanTamu');
 Route::post('/simpanTamukantor', [TamuController::class, 'simpanTamukantor'])->name('simpanTamukantor');
 Route::get('/pilih-kendaraan', [TamuController::class, 'pilihKendaraan'])->name('pilih.kendaraan');
-Route::post('/simpankendaraan', [TamuController::class, 'simpankendaraan'])->name('simpankendaraan');
+Route::post('/simpankendaraan', [TamuController::class, 'simpanKendaraan'])->name('simpankendaraan');
 Route::get('/kendaraan', [TamuController::class, 'kendaraan'])->name('kendaraan');
 Route::post('/pengawalan', [TamuController::class, 'pengawalan'])->name('pengawalan');
 Route::post('/dijemput', [TamuController::class, 'dijemput'])->name('dijemput');
@@ -41,8 +44,10 @@ Route::get('/kode-unik/{surat1_id}', [TamuController::class, 'tampilKodeUnik'])-
 Route::get('/status', [TamuController::class, 'status'])->name('status');
 Route::post('/status/cari', [TamuController::class, 'cariStatus'])->name('cari-status');
 Route::get('/surat2/{id_surat_2_duri}', [TamuController::class, 'show'])->name('surat2.show');
+Route::get('/surat2jkt/{id_surat_2}', [TamuController::class, 'showjkt'])->name('surat2.showjkt');
+Route::get('/surat2pku/{id_surat_2}', [TamuController::class, 'showpku'])->name('surat2.showpku');
 Route::get('/cetak-surat/{surat2}', [TamuController::class, 'cetaksurat'])->name('cetak-surat');
-
+Route::get('/cetak-suratjkt/{surat2}', [TamuController::class, 'cetaksuratjkt'])->name('cetak-suratjkt');
 
 Route::get('/mctn', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/home', [DashboardController::class, 'index'])->name('home')->middleware('auth');
@@ -56,21 +61,38 @@ Route::post('/store', [AuthController::class, 'store'])->name('store');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "administrator"
-
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::get('/admin/users/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 Route::middleware(['auth', 'role:2'])->group(function () {
-    // Rute yang akan dilindungi oleh middleware role "admin jkt"
-
+    // Rute yang akan dilindungi oleh middleware role "admin jkt"lihathistory2
+    Route::get('/admina', [AdminJKTController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/surat2/{id}', [AdminJKTController::class, 'show'])->name('admin.surat2.show');
+    Route::get('/admin/history/{id}', [AdminJKTController::class, 'lihathistory2'])->name('admin.surat2.history');
+    Route::post('/admin/approve/{id}', [AdminJKTController::class, 'approve'])->name('admin.approve');
+    Route::post('/admin/reject/{id}', [AdminJKTController::class, 'reject'])->name('admin.reject');
+    Route::get('/persetujuanadminjkt', [AdminJKTController::class, 'persetujuanadminjkt'])->name('adminjkt.persetujuan');
+    Route::get('/historyadminjkt', [AdminJKTController::class, 'historyadminjkt'])->name('adminjkt.history');
+    Route::get('/adminjkt/persetujuan/cari', [AdminJKTController::class, 'cari'])->name('adminjkt.persetujuan.cari');
+    Route::get('/adminjkt/history/filter', [AdminJKTController::class, 'filterHistory'])->name('adminjkt.history.filter');
 });
 Route::middleware(['auth', 'role:3'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "tuan"
     Route::get('/tuanrumah', [TuanRumahController::class, 'index'])->name('tuanrumah.home');
     Route::get('/persetujuan', [TuanRumahController::class, 'persetujuan'])->name('tuanrumah.persetujuan');
+    // Route::post('/dashboard/persetujuan/cari', [TuanRumahController::class, 'cariNama'])->name('dashboard.persetujuan.cari');
+    Route::get('/dashboard/persetujuan/history', [TuanRumahController::class, 'carihistory'])->name('dashboard.persetujuan.history');
+    Route::get('/history', [TuanRumahController::class, 'history'])->name('tuanrumah.history');
     Route::get('/tuanrumah/show/{id}', [TuanRumahController::class, 'show'])->name('tuanrumah.show');
+    Route::get('/tuanrumah/histori/{id}', [TuanRumahController::class, 'lihathistori'])->name('tuanrumah.lihathistori');
     Route::post('/tuanrumah/delete/{id}', [TuanRumahController::class, 'delete'])->name('tuanrumah.delete');
     Route::post('/tuanrumah/approve/{id}', [TuanRumahController::class, 'approve'])->name('tuanrumah.approve');
     Route::post('/tuanrumah/reject/{id}', [TuanRumahController::class, 'reject'])->name('tuanrumah.reject');
-
+    Route::get('/dashboard/persetujuan/cari', [TuanRumahController::class, 'cari'])->name('dashboard.persetujuan.cari');
     Route::get('/test', [TuanRumahController::class, 'test'])->name('test');
 });
 Route::middleware(['auth', 'role:4'])->group(function () {
@@ -88,6 +110,8 @@ Route::middleware(['auth', 'role:5'])->group(function () {
     Route::post('/admin_duri/approve/{id}', [AdminDuriController::class, 'approve'])->name('admin_duri.approve');
     Route::post('/admin_duri/reject/{id}', [AdminDuriController::class, 'reject'])->name('admin_duri.reject');
 });
+Route::get('/persetujuanadminduri', [AdminDuriController::class, 'persetujuanadminduri'])->name('adminduri.persetujuan');
+Route::get('/historyadminduri', [AdminDuriController::class, 'historyadminduri'])->name('adminduri.history');
 Route::middleware(['auth', 'role:6'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "security"
     Route::get('/security', [SecurityController::class, 'index'])->name('security.home');
@@ -95,7 +119,12 @@ Route::middleware(['auth', 'role:6'])->group(function () {
 });
 Route::middleware(['auth', 'role:7'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "admin pku"
-
+    Route::get('/admin', [AdminPkuController::class, 'index'])->name('adminpku.dashboard');
+    Route::get('/adminpku/surat2/{id}', [AdminPkuController::class, 'show'])->name('admin.surat2pku.show');
+    Route::post('/adminpku/approve/{id}', [AdminPkuController::class, 'approve'])->name('adminpku.approve');
+    Route::post('/adminpku/reject/{id}', [AdminPkuController::class, 'reject'])->name('adminpku.reject');
+    Route::get('/persetujuanadminpku', [AdminPkuController::class, 'persetujuanadminpku'])->name('adminpku.persetujuan');
+    Route::get('/historyadminpku', [AdminPkuController::class, 'historyadminpku'])->name('adminpku.history');
 });
 
 
