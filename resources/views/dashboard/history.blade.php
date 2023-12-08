@@ -10,42 +10,41 @@
             <div class="col-sm-12">
                 <div class="home-tab">
                     <div class="row">
-                        <div class="d-flex justify-content-between">
-                            <h2 class="fw-bold mt-3">History <br> Pengajuan</h2>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label class="" for="search">Cari Nama Tamu</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="search" name="search">
-                                            <button class="btn btn-info" type="submit"style="background-color: #097b96; color: white">Cari</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <h2 class="col fw-bold mt-3">History <br> Pengajuan</h2>
+                        <div class="col">
+                          <div class="row">
+                              <div class="col">
+                                  <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
+                                      @csrf
+                                      <div class="form-group">
+                                          <label class="" for="search">Cari Nama Tamu</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" id="search" name="search">
+                                              <button class="btn ms-1" type="submit"style="background-color: #097b96; color: white; border-radius: 5px">Cari</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
 
-                            <div class="col-md-6">
-                                <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
-                                        <div class="input-group">
-                                            <select id="status_surat" class="form-select form-control" name="status_surat">
-                                                <option value="semua">Semua</option>
-                                                <option value="2">Disetujui</option>
-                                                <option value="3">Ditolak</option>
-                                            </select>
-                                            <button class="btn btn-info" type="submit"style="background-color: #097b96; color: white">Filter</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                              <div class="col">
+                                  <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
+                                      @csrf
+                                      <div class="form-group">
+                                          <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
+                                          <div class="input-group">
+                                              <select id="status_surat" class="form-select form-control" name="status_surat">
+                                                  <option value="">Semua</option>
+                                                  <option value="2" @if($statusSurat == 2) selected @endif>Disetujui</option>
+                                                  <option value="3" @if($statusSurat == 3) selected @endif>Ditolak</option>
+                                              </select>
+                                              <button class="btn ms-1" type="submit"style="background-color: #097b96; color: white; border-radius: 5px">Filter</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
                         </div>
-
-
-                        </div>
+                    </div>
 
                         <div class="container">
                             <div class="card mt-2">
@@ -127,8 +126,14 @@
 
                         </div>
 
-                    </div>
-                    {{-- <div class="col-lg-4 d-flex flex-column">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+{{-- <div class="col-lg-4 d-flex flex-column">
                       <div class="card card-rounded">
                         <div class="card-body">
                           <div class="row">
@@ -318,12 +323,3 @@
                           </div>
                         </div>
                       </div> --}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-@endsection

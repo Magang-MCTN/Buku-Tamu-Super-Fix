@@ -10,42 +10,33 @@
             <div class="col-sm-12">
                 <div class="home-tab">
                     <div class="row">
-
                         <div class="d-flex justify-content-between">
                             <h2 class="fw-bold mt-4">Menunggu Persetujuan</h2>
                             <div class="row form-group">
                                 <div class="col me-2" style="align-items: center;">
-                                    <form method="post" action="{{ route('dashboard.persetujuan.cari') }}">
+                                    <form method="get" action="{{ route('adminduri.persetujuan.cari') }}">
                                         @csrf
-                                    <label class="" for="search" >Cari Nama Tamu</label>
-                                    <div class="d-flex" style="align-items: center">
-                                        <input type="text" class="form-control me-1 mb-4" id="search">
-                                        <button class="btn btn-info mb-4" type="submit" style="color: white">Cari</button>
-                                    </div>
-
-
+                                        <label class="" for="search">Cari Nama Tamu</label>
+                                        <div class="d-flex" style="align-items: center">
+                                            <input type="text" class="form-control me-1 mb-4" id="search" name="search" value="{{ $namaTamu ?? '' }}">
+                                            <input type="hidden" name="status_surat" value="{{ $statusSurat ?? '' }}">
+                                            <button class="btn mb-4" type="submit" style="background-color: #097b96; color: white">Cari</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                {{-- <div class="col form-group">
-                                    <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
-                                    <select id="status_surat" class="form-select form-control" name="status_surat">
-                                        <option value="" selected disabled> Status </option>
-                                        <option value="2">Disetujui</option>
-                                        <option value="3">Ditolak</option>
-                                    </select>
-                                </div> --}}
                             </div>
                         </div>
 
                         <div class="container">
                             <div class="card mt-2">
                                 <div class="card-body">
-                                    <table class="table">
+                                  <div class="table-responsive">
+                                    <table class="table text-center">
                                         <thead>
                                             <tr>
                                                 <th>Nama Tamu</th>
                                                 <th>Asal Perusahaan</th>
                                                 <th>Periode</th>
-
                                                 <th>Status Surat</th>
                                                 <th>Aksi</th>
 
@@ -54,21 +45,59 @@
                                         <tbody>
                                             @foreach ($surat1 as $data)
                                             <td>{{ $data->surat1->nama_tamu }}</td>
-                                <td>{{ $data->surat1->asal_perusahaan }}</td>
-                                <td>{{ $data->surat1->periode->tanggal_masuk->format('d-m-Y') }}
-                                    - {{ $data->surat1->periode->tanggal_keluar->format('d-m-Y') }}</td>
-                                <td>{{ $data->statusSurat->nama_status_surat }}</td>
-                                <td>
-                                    <a href="{{ route('admin.surat2.show', ['id' => $data->id_surat_2]) }}"
-                                       class="btn btn-info">Lihat</a>
-                                </td>
-                            </tr>
-                        @endforeach
+                                            <td>{{ $data->surat1->asal_perusahaan }}</td>
+                                            <td>{{ $data->surat1->periode->tanggal_masuk->format('d-m-Y') }}
+                                                s.d. {{ $data->surat1->periode->tanggal_keluar->format('d-m-Y') }}</td>
+                                            <td><p class="badge badge-warning">{{ $data->statusSurat->nama_status_surat }}</p></td>
+                                            <td>
+                                                <a href="{{ route('adminduri.surat.show', ['id' => $data->id_surat_2_duri]) }}"
+                                                  class="btn "  style="background-color: #097b86; color: white">Lihat</a>
+                                            </td>
+                                            @endforeach
                                         </tbody>
                                     </table>
+
+                                  </div>
                                 </div>
                             </div>
+                            <div class="mt-3 d-flex justify-content-end" style="color: #097b96">
+                                <ul class="pagination">
+                                    {{-- Previous Page Link --}}
+                                    @if ($surat1->onFirstPage())
+                                        <li class="page-item disabled">
+                                            <span class="page-link">&laquo;</span>
+                                        </li>
+                                    @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $surat1->previousPageUrl() }}" rel="prev">&laquo;</a>
+                                        </li>
+                                    @endif
 
+                                    {{-- Pagination Elements --}}
+                                    @for ($page = max(1, $surat1->currentPage() - 2); $page <= min($surat1->lastPage(), $surat1->currentPage() + 2); $page++)
+                                        @if ($surat1->currentPage() == $page)
+                                            <li class="page-item active" aria-current="page">
+                                                <span class="page-link" style="background-color: #097b96; color: white">{{ $page }}</span>
+                                            </li>
+                                        @else
+                                            <li class="page-item">
+                                                <a class=" page-link"  href="{{ $surat1->url($page) }}">{{ $page }}</a>
+                                            </li>
+                                        @endif
+                                    @endfor
+
+                                    {{-- Next Page Link --}}
+                                    @if ($surat1->hasMorePages())
+                                        <li class="page-item">
+                                            <a class="page-link"style="background-color: #097b96; color: white" href="{{ $surat1->nextPageUrl() }}" rel="next">&raquo;</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item disabled">
+                                            <span class="page-link">&raquo;</span>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
 
                     </div>

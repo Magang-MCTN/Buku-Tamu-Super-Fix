@@ -18,7 +18,7 @@
                                                 <div class="fw-bold text-black">
                                                     Total <br> Kunjungan
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanBarang}}</div>
+                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanBarang ? $jumlahPengajuanBarang: '0'}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-archive" style="color: #097b96"></i>
@@ -39,7 +39,7 @@
                                                 <div class="fw-bold text-black">
                                                     Pengajuan <br> Kunjungan
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDiajukan}}</div>
+                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDiajukan ? $jumlahPengajuanDiajukan: '0'}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-document" style="color: #097b96"></i>
@@ -61,7 +61,7 @@
                                                     Kunjungan <br>
                                                      Disetujui
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDisetujui}}</div>
+                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDisetujui ? $jumlahPengajuanDisetujui: '0'}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-check" style="color: #097b96"></i>
@@ -83,7 +83,7 @@
                                                     Kunjungan <br>
                                                     Ditolak
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDitolak}}</div>
+                                                <div class="card-title" style="font-size: 24px">{{$jumlahPengajuanDitolak ? $jumlahPengajuanDitolak: '0'}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-check" style="color: #097b96"></i>

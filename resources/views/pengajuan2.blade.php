@@ -1,6 +1,14 @@
 @extends('layouts/app')
 
 @section('content')
+<style>
+    .table td {
+        white-space: normal; /* Mengatur white-space ke normal agar teks dapat turun ke bawah jika melebihi lebar kolom */
+        word-wrap: break-word; /* Mengatur word-wrap agar kata-kata yang panjang dapat dipisahkan dan turun ke bawah */
+        max-width: 150px; /* Mengatur lebar maksimum kolom agar tidak terlalu lebar */
+    }
+</style>
+
 <div class="container">
     <div class="text-center my-5">
         <h2 class="fw-bold" style="color: #097B96;">Formulir Buku Tamu</h2>
@@ -130,7 +138,9 @@
                 <td>${masa_berlaku_ktp}</td>
                 <td>${jabatan}</td>
                 <td>${foto_ktp.name}</td>
-                <td><button class="hapus btn btn-danger">Hapus</button></td>
+                <td class="text-center">
+    <button class="hapus btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Hapus</button>
+</td>
             </tr>`;
             $('#tabelSementara').append(newRow);
 

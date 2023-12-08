@@ -14,7 +14,7 @@
                                 <td>{{ $surat2->id_surat_2 }}</td>
                             </tr>
                             <tr>
-                                <th>Kode Unik</th>
+                                <th>Nomor Surat</th>
                                 <td>{{ $surat2->kode_unik }}</td>
                             </tr>
                             <tr>
@@ -28,6 +28,10 @@
                             <tr>
                                 <th>Jam Kedatangan</th>
                                 <td>{{ explode(' ', $surat2->surat1->periode->jam_kedatangan)[1]  }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tujuan</th>
+                                <td>{{ $surat2->surat1->tujuan_keperluan}}</td>
                             </tr>
                             <tr></tr>
 
@@ -100,7 +104,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between my-4">
-                        <div><a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Kembali</a></div>
+                        <div><a href="{{ route('adminjkt.history') }}" class="btn btn-primary">Kembali</a></div>
                         <div><a href="/cetak-suratjkt/{{$surat2->id_surat_2}}" class="btn btn-primary">Cetak Dokumen</a></div>
                     </div>
                     <!-- <div class="d-flex justify-content-between">

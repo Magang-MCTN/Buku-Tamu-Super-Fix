@@ -16,7 +16,7 @@ class Surat2BukuTamu extends Model
         'id_tamu',
 
         'id_ga',
-        'id_status_surat',
+        'id_status_surat2',
         'id_lokasi',
         'id_periode',
         'kode_unik',
@@ -39,7 +39,7 @@ class Surat2BukuTamu extends Model
 
     public function statusSurat()
     {
-        return $this->belongsTo(StatusSurat::class, 'id_status_surat', 'id_status_surat');
+        return $this->belongsTo(StatusSurat::class, 'id_status_surat2', 'id_status_surat');
     }
 
     public function lokasi()

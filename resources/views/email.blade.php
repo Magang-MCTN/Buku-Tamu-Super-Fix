@@ -82,7 +82,7 @@
     </style>
 </head>
 <body>
-        <center><img src="https://mctn.co.id/wp-content/uploads/2023/05/MCTN.png"></center>
+        <center><img src="logo1.png"></center>
     <div class="container">
         <h2>Hello!</h2>
         <p>Yang Terhormat Bapak/Ibu</p>

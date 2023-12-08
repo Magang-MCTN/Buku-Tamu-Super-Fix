@@ -43,6 +43,9 @@
             padding: 8px;
             text-align: left;
         }
+        th {
+            background-color: rgb(133, 225, 112)2, 212, 8; /* Warna latar belakang kuning */
+        }
     </style>
 </head>
 <body>
@@ -53,13 +56,12 @@
         {{-- <p><strong>Kode Unik:</strong> {{ $surat2->kode_unik }}</p> --}}
 
 
-        <p><strong>Kode Surat &nbsp;&nbsp;:</strong> {{ $surat2->kode_unik }}</p>
-        <p><strong>Asal Perusahaan&nbsp;:</strong> {{ $surat2->surat1->asal_perusahaan }}</p>
+        <p><strong>Kode Surat &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> {{ $surat2->kode_unik }}</p>
+        <p><strong>Asal Perusahaan&nbsp;&nbsp;&nbsp;&nbsp;:</strong> {{ $surat2->surat1->asal_perusahaan }}</p>
 
-        <p><strong>Periode &nbsp;&nbsp;:</strong> {{ $surat2->surat1->periode->tanggal_masuk->format('d-m-Y') }} s.d. {{ $surat2->surat1->periode->tanggal_keluar->format('d-m-Y') }}</p>
-        <p><strong>Jam Kedatangan&nbsp;:</strong> {{ explode(' ', $surat2->surat1->periode->jam_kedatangan)[1] }}</p>
-        <p><strong>Tujuan Keperluan&nbsp;:</strong> {{ $surat2->surat1->tujuan_keperluan }}</p>
-
+        <p><strong>Periode&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> {{ $surat2->surat1->periode->tanggal_masuk->format('d-m-Y') }} s.d. {{ $surat2->surat1->periode->tanggal_keluar->format('d-m-Y') }}</p>
+        <p><strong>Jam Kedatangan&nbsp;&nbsp;&nbsp;&nbsp;:</strong> {{ explode(' ', $surat2->surat1->periode->jam_kedatangan)[1] }}</p>
+        <p><strong>Tujuan Keperluan&nbsp;&nbsp;:</strong> {{ $surat2->surat1->tujuan_keperluan }}</p>
         <h2>Data Tamu</h2>
         <table>
             <thead>

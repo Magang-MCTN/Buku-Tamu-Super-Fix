@@ -100,7 +100,14 @@
                         </div>
 
                     </div>
-                    {{-- <div class="col-lg-4 d-flex flex-column">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+{{-- <div class="col-lg-4 d-flex flex-column">
                       <div class="card card-rounded">
                         <div class="card-body">
                           <div class="row">
@@ -290,12 +297,3 @@
                           </div>
                         </div>
                       </div> --}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-@endsection

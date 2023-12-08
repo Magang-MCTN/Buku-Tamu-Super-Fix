@@ -9,89 +9,91 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="home-tab">
-                    <div class="row">
-
-                       <div class="d-flex justify-content-between">
-                            <h2 class="fw-bold mt-3">History <br> Pengajuan</h2>
-
-                            <div class="row">
-                                 <div class="col-md-6 mb-3">
-                                    <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label class="" for="search">Cari Nama Tamu</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="search" name="search">
-                                                <button class="btn btn-info" type="submit"style="background-color: #097b96; color: white">Cari</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                  <div class="row">
+                    <h2 class="col fw-bold mt-4">History <br> Pengajuan</h2>
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                            <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="" for="search">Cari Nama Tamu</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="search" name="search">
+                                        <button class="btn ms-1" type="submit"style="background-color: #097b96; color: white; border-radius: 5px">Cari</button>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
-                                            <div class="input-group">
-                                                <select id="status_surat" class="form-select form-control" name="status_surat">
-                                                    <option value="semua">Semua</option>
-                                                    <option value="2">Disetujui</option>
-                                                    <option value="3">Ditolak</option>
-                                                </select>
-                                                <button class="btn btn-info" type="submit"style="background-color: #097b96; color: white">Filter</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                         </div>
 
-                        <div class="container">
-                            <div class="card mt-2">
-                                <div class="card-body">
-                                    <table class="table text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama Tamu</th>
-                                                <th>Asal Perusahaan</th>
-                                                <th>Periode</th>
-
-                                                <th>Status Surat</th>
-                                                <th>Aksi</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($surat1 as $data)
-                                            <tr>
-                                                <td>{{ $data->nama_tamu }}</td>
-                                                <td>{{ $data->asal_perusahaan }}</td>
-                                                <td>{{ $data->periode->tanggal_masuk->format('d-m-Y') }}  s.d. {{ $data->periode->tanggal_keluar->format('d-m-Y') }}</td>
-                                                <td>
-                                                  @if($data->statusSurat->nama_status_surat == 'Disetujui')
-                                                  <p class="badge badge-success">{{ $data->statusSurat->nama_status_surat }}</p>
-                                                  @elseif($data->statusSurat->nama_status_surat == 'Ditolak')
-                                                  <p class="badge badge-danger">{{ $data->statusSurat->nama_status_surat }}</p>
-                                                  @else
-                                                  <p class="badge badge-warning">{{ $data->statusSurat->nama_status_surat }}</p>
-                                                </td>
-                                                @endif
-                                                <td><a href="{{ route('tuanrumah.lihathistori', $data->id_surat_1) }}" class="btn" style="background-color: #097B96; color:white">Lihat</a>
-
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-
+                        <div class="col">
+                            <form method="get" action="{{ route('dashboard.persetujuan.history') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
+                                    <div class="input-group">
+                                        <select id="status_surat" class="form-select form-control" name="status_surat">
+                                            <option value="">Semua</option>
+                                            <option value="2" @if($statusSurat == 2) selected @endif>Disetujui</option>
+                                            <option value="3" @if($statusSurat == 3) selected @endif>Ditolak</option>
+                                        </select>
+                                        <button class="btn ms-1" type="submit"style="background-color: #097b96; color: white; border-radius: 5px">Filter</button>
+                                    </div>
                                 </div>
-                            </div>
-                            {{--  --}}
-
+                            </form>
+                          </div>
                         </div>
+                      </div>
+                  </div>
 
-                    </div>
-                    {{-- <div class="col-lg-4 d-flex flex-column">
+                  <div class="container">
+                      <div class="card mt-2">
+                          <div class="card-body">
+                              <table class="table text-center">
+                                  <thead>
+                                      <tr>
+                                          <th>Nama Tamu</th>
+                                          <th>Asal Perusahaan</th>
+                                          <th>Periode</th>
+
+                                          <th>Status Surat</th>
+                                          <th>Aksi</th>
+
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      @foreach ($surat1 as $data)
+                                      <tr>
+                                          <td>{{ $data->nama_tamu }}</td>
+                                          <td>{{ $data->asal_perusahaan }}</td>
+                                          <td>{{ $data->periode->tanggal_masuk->format('d-m-Y') }}  s.d. {{ $data->periode->tanggal_keluar->format('d-m-Y') }}</td>
+                                          <td>
+                                            @if($data->statusSurat->nama_status_surat == 'Disetujui')
+                                            <p class="badge badge-success">{{ $data->statusSurat->nama_status_surat }}</p>
+                                            @elseif($data->statusSurat->nama_status_surat == 'Ditolak')
+                                            <p class="badge badge-danger">{{ $data->statusSurat->nama_status_surat }}</p>
+                                            @else
+                                            <p class="badge badge-warning">{{ $data->statusSurat->nama_status_surat }}</p>
+                                          </td>
+                                          @endif
+                                          <td><a href="{{ route('tuanrumah.lihathistori', $data->id_surat_1) }}" class="btn" style="background-color: #097B96; color:white">Lihat</a>
+
+                                          </tr>
+                                      @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+{{-- <div class="col-lg-4 d-flex flex-column">
                       <div class="card card-rounded">
                         <div class="card-body">
                           <div class="row">
@@ -281,12 +283,3 @@
                           </div>
                         </div>
                       </div> --}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-@endsection

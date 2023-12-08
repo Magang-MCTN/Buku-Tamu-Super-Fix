@@ -11,35 +11,38 @@
                 <div class="home-tab">
                     <div class="row">
 
-                        <div class="d-flex justify-content-between">
-                            <h2 class="fw-bold mt-4">History Pengajuan</h2>
-                            <div class="row form-group">
-                                <div class="col me-2" style="align-items: center;">
-                                    <form method="get" action="{{ route('adminjkt.history.filter') }}">
-                                        <label class="" for="search">Cari Nama Tamu</label>
-                                        <div class="d-flex" style="align-items: center">
-                                            <input type="text" class="form-control me-1 mb-4" id="search" name="search" value="{{ $namaTamu ?? '' }}">
-                                            <button class="btn btn-info mb-4" type="submit" style="color: white">Cari</button>
-                                        </div>
-                                    </form>
-                                    </div>
-                                </div>
+                        <h2 class="col fw-bold mt-4">History Pengajuan</h2>
+                        <div class="col">
 
-                                <div class="col form-group">
-                                    <form method="get" action="{{ route('adminjkt.history.filter') }}">
-                                        <div class="col form-group">
-                                            <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
-                                            <select id="status_surat" class="form-select form-control" name="status_surat">
-                                                <option value="" >Semua</option>
-                                                <option value="2" @if($statusSurat == 2) selected @endif>Disetujui</option>
-            <option value="7" @if($statusSurat == 7) selected @endif>Ditolak</option>
-                                            </select>
-                                        </div>
-                                        <button class="btn btn-info mb-4" type="submit" style="color: white">Filter</button>
-                                    </form>
-                                </div>
-                            </div>
+                          <div class="row form-group">
+                              <div class="col me-2" style="align-items: center;">
+                                  <form method="get" action="{{ route('adminjkt.history.filter') }}">
+                                      <label class="" for="search">Cari Nama Tamu</label>
+                                      <div class="d-flex" style="align-items: center">
+                                          <input type="text" class="form-control me-1 mb-4" id="search" name="search" value="{{ $namaTamu ?? '' }}">
+                                          <button class="btn mb-4" type="submit" style="background-color: #097b96; color: white">Cari</button>
+                                      </div>
+                                  </form>
+                              </div>
+                              <div class="col">
+                                  <form method="get" action="{{ route('adminjkt.history.filter') }}">
+                                      <div class="form-group">
+                                          <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
+                                          <div class="input-group">
+                                              <select id="status_surat" class="form-select form-control" name="status_surat">
+                                                  <option value="" >Semua</option>
+                                                  <option value="2" @if($statusSurat == 2) selected @endif>Disetujui</option>
+                                                  <option value="7" @if($statusSurat == 7) selected @endif>Ditolak</option>
+                                              </select>
+                                              <button class="btn mb-4 ms-1" type="submit" style="background-color: #097b96; color: white; border-radius: 5px">Filter</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
                         </div>
+
+                    </div>
 
                         <div class="container">
                             <div class="card mt-2">
@@ -66,7 +69,7 @@
                                 <td>
                                   @if($data->statusSurat->nama_status_surat == 'Disetujui')
                                   <p class="badge badge-success">{{ $data->statusSurat->nama_status_surat }}</p>
-                                  @elseif($data->statusSurat->nama_status_surat == 'Ditolak')
+                                  @elseif($data->statusSurat->nama_status_surat == "Ditolak Admin")
                                   <p class="badge badge-danger">{{ $data->statusSurat->nama_status_surat }}</p>
                                   @else
                                   <p class="badge badge-warning">{{ $data->statusSurat->nama_status_surat }}</p>

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifEmailAdmin;
+use App\Mail\NotifEmailPHR;
+use App\Mail\NotifEmailTamu;
 use App\Mail\Send;
+use App\Mail\Sendpengajuan;
 use App\Models\DataDiriBukuTamu;
 use App\Models\KendaraanBukuTamu;
 use App\Models\LokasiTujuan;
@@ -71,7 +75,7 @@ class TamuController extends Controller
         $idsurat1 = $surat1->id_surat_1;
 
         // Kirim notifikasi ke alamat email tamu
-        Mail::to($emailTamu)->send(new Send($idsurat1));
+        Mail::to($emailTamu)->send(new Sendpengajuan($idsurat1));
 
 
 
@@ -198,15 +202,32 @@ class TamuController extends Controller
             $surat2 = new Surat2BukuTamu();
             $surat2->id_surat_1 = $surat1_id;
             $surat2->id_ga = null;
-            $surat2->id_status_surat = 6;
+            $surat2->id_status_surat2 = 6;
             $surat2->kode_unik = $kode_unik;
             $surat2->save();
+
+            // Kirim email notifikasi sesuai dengan kriteria
+            $surat1 = Surat1BukuTamu::findOrFail($surat1_id);
+            $id_lokasi = $surat1->id_lokasi;
+
+            if ($id_lokasi == 1) {
+                // Kirim email ke user dengan id_role 2
+                $users = User::where('id_role', 2)->get();
+                $emails = $users->pluck('email')->toArray();
+                Mail::to($emails)->send(new NotifEmailAdmin($surat1, $surat2));
+            } elseif ($id_lokasi == 2) {
+                // Kirim email ke user dengan id_role 7
+                $users = User::where('id_role', 7)->get();
+                $emails = $users->pluck('email')->toArray();
+                Mail::to($emails)->send(new NotifEmailAdmin($surat1, $surat2));
+            }
+            $emailtamu = $surat1->email_tamu;
+            Mail::to($emailtamu)->send(new NotifEmailTamu($surat1, $surat2));
 
             return redirect('/kode-unik/' . $surat1_id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
         return redirect()->back();
     }
 
@@ -255,12 +276,18 @@ class TamuController extends Controller
             $surat2->id_surat_1 = $surat1_id;
             $surat2->id_phr = null; // Misalnya null, jika diisi nanti setelah PHR approve
             $surat2->id_ga_duri = null; // Misalnya null, jika diisi nanti
-            $surat2->id_status_surat = 1; // Misalnya 1 (Anda dapat menyesuaikan)
+            $surat2->id_status_surat = 4; // Misalnya 1 (Anda dapat menyesuaikan)
             $surat2->kode_unik = $kode_unik;
             $surat2->save();
 
-            // $redirectUrl = '/kode-unik/' . $surat1_id;
-            // return redirect('/kode-unik/'+{$surat1_id});
+            $surat1 = Surat1BukuTamu::findOrFail($surat1_id);
+            $users = User::where('id_role', 4)->get();
+            $emails = $users->pluck('email')->toArray();
+            Mail::to($emails)->send(new NotifEmailPHR($surat1, $surat2));
+            $emailtamu = $surat1->email_tamu;
+            Mail::to($emailtamu)->send(new NotifEmailTamu($surat1, $surat2));
+
+
             return redirect('/kode-unik/' . $surat1_id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500); // Mengirim pesan kesalahan sebagai respons JSON
@@ -335,9 +362,16 @@ class TamuController extends Controller
         $surat2->id_surat_1 = $id_surat_1;
         $surat2->id_phr = null; // Misalnya null, jika diisi nanti setelah PHR approve
         $surat2->id_ga_duri = null; // Misalnya null, jika diisi nanti
-        $surat2->id_status_surat = 1; // Misalnya 1 (Anda dapat menyesuaikan)
+        $surat2->id_status_surat = 4; // Misalnya 1 (Anda dapat menyesuaikan)
         $surat2->kode_unik = $kode_unik;
         $surat2->save();
+
+        $surat1 = Surat1BukuTamu::findOrFail($id_surat_1);
+        $users = User::where('id_role', 4)->get();
+        $emails = $users->pluck('email')->toArray();
+        Mail::to($emails)->send(new NotifEmailPHR($surat1, $surat2));
+        $emailtamu = $surat1->email_tamu;
+        Mail::to($emailtamu)->send(new NotifEmailTamu($surat1, $surat2));
 
         if ($dataTersimpan > 0) {
             return redirect()->route('tamu.create')->with('success', 'Data kendaraan berhasil disimpan.');
@@ -369,7 +403,7 @@ class TamuController extends Controller
         $kode_unik = $request->input('kode_unik');
 
         // Cari status berdasarkan kode unik
-        $status = Surat2BukuTamuDuri::with(['statusSurat', 'surat1.lokasi'])
+        $status2 = Surat2BukuTamuDuri::with(['statusSurat', 'surat1.lokasi'])
             ->where('kode_unik', $kode_unik)
             ->get(); // Mengambil satu set data
 
@@ -377,7 +411,7 @@ class TamuController extends Controller
             ->where('kode_unik', $kode_unik)
             ->get(); // Mengambil satu set data
 
-        return view('hasil_pencarian', compact('status', 'statuss'));
+        return view('hasil_pencarian', compact('status2', 'statuss'));
     }
     public function status()
     {
@@ -421,11 +455,11 @@ class TamuController extends Controller
     public function cetakSurat(Request $request, $id_surat_2_duri)
     {
         $surat2 = Surat2BukuTamuDuri::find($id_surat_2_duri);
-
+        $imagePath = public_path('logo2.png');
         if ($surat2) {
-            $pdf = PDF::loadview('cetak-surat', compact('surat2'));
+            $pdf = PDF::loadview('cetak-surat', compact('surat2', 'imagePath'));
 
-
+            // return PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->stream('surat.pdf');
             return $pdf->stream('surat.pdf'); // Menampilkan PDF dalam browser
         } else {
             return abort(404); // Atau tindakan lain jika data tidak ditemukan

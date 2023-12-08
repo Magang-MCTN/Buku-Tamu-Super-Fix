@@ -18,7 +18,7 @@
                                                 <div class="fw-bold text-black">
                                                     Total <br> Kunjungan
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{$totalPengajuan}}</div>
+                                                <div class="card-title" style="font-size: 24px">{{$totalPengajuan ? $totalPengajuan: '0'}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-archive" style="color: #097b96"></i>
@@ -39,7 +39,7 @@
                                                 <div class="fw-bold text-black">
                                                     Pengajuan <br> Kunjungan
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->dalam_proses_count }}</div>
+                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->dalam_proses_count ? $statusCounts->dalam_proses_count : '0' }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-document" style="color: #097b96"></i>
@@ -61,7 +61,7 @@
                                                     Kunjungan <br>
                                                      Disetujui
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->disetujui_count }}</div>
+                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->disetujui_count ? $statusCounts->disetujui_count: '0' }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-check" style="color: #097b96"></i>
@@ -83,7 +83,7 @@
                                                     Kunjungan <br>
                                                     Ditolak
                                                 </div>
-                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->ditolak_count }}</div>
+                                                <div class="card-title" style="font-size: 24px">{{ $statusCounts->ditolak_count ? $statusCounts->disetujui_count: '0' }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="mdi mdi-file-check" style="color: #097b96"></i>

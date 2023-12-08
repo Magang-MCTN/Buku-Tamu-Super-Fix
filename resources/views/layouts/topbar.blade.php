@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #097B96">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #097B96;">
     <div class="container-fluid" style="background-color: #097B96">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start" style="background-color: #097B96">
         <div>
-          <a class="navbar-brand brand-logo" href="">
-            <img src="{{ asset('dashboard/template/images/MCTN.png') }}" alt="logo" />
+          <a class="navbar-brand brand-logo" href="/">
+            <img src="{{ asset('logo.png') }}" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="">
-            <img src="{{ asset('dashboard/template/images/MCTN.png') }}" alt="logo" />
+          <a class="navbar-brand brand-logo-mini" href="/">
+            <img src="{{ asset('logo-mini.png') }}" alt="logo" />
           </a>
         </div>
       </div>

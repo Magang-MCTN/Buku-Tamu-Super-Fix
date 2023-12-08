@@ -6,10 +6,10 @@
         </button>
       </div>
       <div>
-        <a class="navbar-brand brand-logo" href="/">
+        <a class="navbar-brand brand-logo" href="/mctn">
           <img src="{{ asset('logo.png') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">
+        <a class="navbar-brand brand-logo-mini" href="/mctn">
           <img src="{{ asset('logo.png') }}" alt="logo" />
         </a>
       </div>
@@ -65,17 +65,17 @@
             <input type="text" class="form-control">
           </div>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <form class="search-form" action="#">
             <i class="icon-search"></i>
             <input type="search" class="form-control" placeholder="Search Here" title="Search here">
           </form>
-        </li>
-        <li class="nav-item ">
+        </li> --}}
+        {{-- <li class="nav-item ">
           <a class="nav-link count-indicator" id="notificationDropdown" href="https://outlook.live.com/mail/0/inbox?nlp=1" >
             <i class="icon-mail icon-lg"></i>
           </a>
-          {{-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
             <a class="dropdown-item py-3 border-bottom">
               <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
               <span class="badge badge-pill badge-primary float-right">View all</span>
@@ -107,8 +107,8 @@
                 <p class="fw-light small-text mb-0"> 2 days ago </p>
               </div>
             </a>
-          </div> --}}
-        </li>
+          </div>
+        </li> --}}
         {{-- <li class="nav-item dropdown">
           <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="icon-bell"></i>

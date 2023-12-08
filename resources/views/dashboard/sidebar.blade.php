@@ -265,6 +265,39 @@
             </ul>
           </div>
         </li>
+
+        @elseif (Auth::user()->id_role === 4)
+        <li class="nav-item nav-category">Persetujuan</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title">Persetujuan</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/persetujuanphr">Persetujuan</a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="/status-pengadaan">Status</a></li> --}}
+              <li class="nav-item"> <a class="nav-link" href="/historyphr">History</a></li>
+            </ul>
+          </div>
+        </li>
+
+        @elseif (Auth::user()->id_role === 6)
+        <li class="nav-item nav-category">Kunjungan</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title">Daftar Kunjungan</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/historysecurityduri">Kunjungan</a></li>
+            </ul>
+          </div>
+        </li>
+
         @endif
 
         @if (Auth::user()->level === 'Admin Tim')

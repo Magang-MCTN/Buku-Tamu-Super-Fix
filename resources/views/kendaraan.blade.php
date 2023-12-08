@@ -6,7 +6,7 @@
         <h2 class="fw-bold" style="color: #097B96;">Formulir Buku Tamu</h2>
         <h1 class="fw-bold" style="font-size: 200%">PT Mandau Cipta Tenaga Nusantara</h1>
     </div>
-    <div style="">
+    <div style="display: none">
 
         <p> ID SURAT ANDA ADALAH {{ $surat1_id }} </p>
 

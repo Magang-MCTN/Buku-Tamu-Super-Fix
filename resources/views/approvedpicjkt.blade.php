@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-        <center><img src="https://mctn.co.id/wp-content/uploads/2023/05/MCTN.png"></center>
+        <center><img src="https://mctn.co.id/wp-content/uploads/2023/11/LOGO-PLN-MCTN-2_-2048x722.png"></center>
     <div class="container">
         <h2>Hello!</h2>
         <p>Yang Terhormat Bapak/Ibu</p>
@@ -67,9 +67,9 @@
         </ul>
         <center><a href="http://127.0.0.1:8000/pengajuan-tamu-kantor?surat1_id={{ $surat1_id }}">Isi Surat 2</a></center>
         <ul>
-            <li>Info lebih lanjut hubungi PT MCTN (021) 22760235</li>
+            <li>Info lebih lanjut hubungi PT PLN MCTN (021) 22760235</li>
             <li>Terima kasih,</li>
-            <li>PT Mandau Cipta Tenaga Nusantara</li>
+            <li>PT PLN Mandau Cipta Tenaga Nusantara</li>
         </ul>
     </div>
 </body>

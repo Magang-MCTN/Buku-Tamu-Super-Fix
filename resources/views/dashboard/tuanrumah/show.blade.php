@@ -55,7 +55,7 @@
                     <!-- Tampilkan detail lainnya sesuai kebutuhan -->
 
 
-                    <div class="d-flex">
+                    <div class="d-flex my-4">
                         @if($surat1->id_status_surat === 1)
                         <form action="{{ route('tuanrumah.approve', $surat1->id_surat_1) }}" method="POST">
                             @csrf

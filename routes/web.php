@@ -97,25 +97,40 @@ Route::middleware(['auth', 'role:3'])->group(function () {
 });
 Route::middleware(['auth', 'role:4'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "phr"
+    Route::get('/phr/surat2/{id}', [PhrController::class, 'show'])->name('phr.surat2.show');
     Route::get('/phr', [PhrController::class, 'index'])->name('phr.home');
-
+    Route::get('/persetujuanphr', [PhrController::class, 'persetujuanphr'])->name('phr.persetujuan');
+    Route::get('/historyphr', [PhrController::class, 'historyphr'])->name('phr.history');
+    Route::get('/phr/persetujuan/cari', [PhrController::class, 'cari'])->name('phr.persetujuan.cari');
+    Route::get('/phr/history/filter', [PhrController::class, 'filterHistory'])->name('phr.history.filter');
     Route::post('/phr/approve/{id_surat_2_duri}', [PHRController::class, 'approve'])->name('phr.approve');
     Route::post('/phr/reject/{id_surat_2_duri}', [PHRController::class, 'reject'])->name('phr.reject');
-    Route::get('/phr/surat2/{id_surat_2_duri}', [PHRController::class, 'show'])->name('phr.surat2.show');
+    Route::get('/phr/history/{id}', [PHRController::class, 'lihathistory2'])->name('phr.surat2.history');
+    // Route::get('/phr//{id_surat_2_duri}', [PHRController::class, 'show'])->name('phr.surat2.show');
 });
 Route::middleware(['auth', 'role:5'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "admin_duri"
+    Route::get('/adminduri/surat2/{id}', [AdminDuriController::class, 'showw'])->name('adminduri.surat.show');
     Route::get('/admin_duri', [AdminDuriController::class, 'index'])->name('admin_duri.dashboard');
-    Route::get('/admin_duri/surat2/{id}', [AdminDuriController::class, 'show'])->name('admin_duri.surat2.show');
+
+    // Route::get('/admin_duri/surat2/{id}', [AdminDuriController::class, 'show'])->name('admin_duri.surat2.show');
     Route::post('/admin_duri/approve/{id}', [AdminDuriController::class, 'approve'])->name('admin_duri.approve');
     Route::post('/admin_duri/reject/{id}', [AdminDuriController::class, 'reject'])->name('admin_duri.reject');
+    Route::get('/persetujuanadminduri', [AdminDuriController::class, 'persetujuanadminduri'])->name('adminduri.persetujuan');
+    Route::get('/historyadminduri', [AdminDuriController::class, 'historyadminduri'])->name('adminduri.history');
+    Route::get('/adminduri/persetujuan/cari', [AdminDuriController::class, 'cari'])->name('adminduri.persetujuan.cari');
+    Route::get('/adminduri/history/filter', [AdminDuriController::class, 'filterHistory'])->name('adminduri.history.filter');
+    Route::get('/adminduri/history/{id}', [AdminDuriController::class, 'lihathistory2'])->name('adminduri.surat2.history');
 });
 Route::get('/persetujuanadminduri', [AdminDuriController::class, 'persetujuanadminduri'])->name('adminduri.persetujuan');
-Route::get('/historyadminduri', [AdminDuriController::class, 'historyadminduri'])->name('adminduri.history');
+
 Route::middleware(['auth', 'role:6'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "security"
     Route::get('/security', [SecurityController::class, 'index'])->name('security.home');
     Route::get('/security/show/{id_surat_2_duri}', [SecurityController::class, 'show'])->name('security.show');
+    Route::get('/historysecurityduri', [SecurityController::class, 'historysecurity'])->name('security.history');
+    Route::get('/security/history/{id}', [SecurityController::class, 'lihathistory2'])->name('security.surat2.history');
+    Route::get('/security/filter', [SecurityController::class, 'filterHistory2'])->name('security.filter');
 });
 Route::middleware(['auth', 'role:7'])->group(function () {
     // Rute yang akan dilindungi oleh middleware role "admin pku"
@@ -125,6 +140,9 @@ Route::middleware(['auth', 'role:7'])->group(function () {
     Route::post('/adminpku/reject/{id}', [AdminPkuController::class, 'reject'])->name('adminpku.reject');
     Route::get('/persetujuanadminpku', [AdminPkuController::class, 'persetujuanadminpku'])->name('adminpku.persetujuan');
     Route::get('/historyadminpku', [AdminPkuController::class, 'historyadminpku'])->name('adminpku.history');
+    Route::get('/adminpku/persetujuan/cari', [AdminPkuController::class, 'cari'])->name('adminpku.persetujuan.cari');
+    Route::get('/adminpku/history/filter', [AdminPkuController::class, 'filterHistory'])->name('adminpku.history.filter');
+    Route::get('/adminpku/history/{id}', [AdminPkuController::class, 'lihathistory2'])->name('adminpku.surat2.history');
 });
 
 

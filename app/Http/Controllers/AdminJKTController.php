@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\aprovedadmin;
 use App\Models\Surat2BukuTamu;
+use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminJKTController extends Controller
 {
@@ -35,7 +38,7 @@ class AdminJKTController extends Controller
 
         $suratToApprove = Surat2BukuTamu::with(['surat1', 'statusSurat'])
             ->where(function ($query) {
-                $query->where('id_status_surat', 6);
+                $query->where('id_status_surat2', 6);
             })
             ->whereHas('surat1', function ($query) {
                 $query->where('id_lokasi', 1);
@@ -48,7 +51,7 @@ class AdminJKTController extends Controller
     {
         $surat1 = Surat2BukuTamu::with(['surat1', 'statusSurat'])
             ->where(function ($query) {
-                $query->where('id_status_surat', 6);
+                $query->where('id_status_surat2', 6);
             })
             ->whereHas('surat1', function ($query) {
                 $query->where('id_lokasi', 1);
@@ -75,7 +78,7 @@ class AdminJKTController extends Controller
         $statusSurat = null;
         $surat1 = Surat2BukuTamu::with(['surat1', 'statusSurat'])
             ->where(function ($query) {
-                $query->whereIn('id_status_surat', [2, 7]);
+                $query->whereIn('id_status_surat2', [2, 7]);
             })
             ->whereHas('surat1', function ($query) {
                 $query->where('id_lokasi', 1);
@@ -91,20 +94,20 @@ class AdminJKTController extends Controller
         $namaTamu = $request->input('search', null);
 
         $query = Surat2BukuTamu::with(['surat1', 'statusSurat'])
-            ->whereIn('id_status_surat', [2, 7])
+            ->whereIn('id_status_surat2', [2, 7])
             ->whereHas('surat1', function ($query) use ($statusSurat, $namaTamu) {
                 $query->where('id_lokasi', 1);
                 if ($statusSurat !== null) {
-                    $query->where('id_status_surat', $statusSurat);
+                    $query->where('id_status_surat2', $statusSurat);
                 }
                 if ($namaTamu !== null) {
                     $query->where('nama_tamu', 'like', '%' . $namaTamu . '%');
                 }
             });
 
-        $surat1 = $query->paginate(5);
+        $surat1 = $query->get();
 
-        return view('dashboard.admin.history', compact('surat1', 'statusSurat', 'namaTamu'));
+        return view('dashboard.admin.history2', compact('surat1', 'statusSurat', 'namaTamu'));
     }
     public function lihathistory2($id_surat_2)
     {
@@ -131,10 +134,26 @@ class AdminJKTController extends Controller
     public function approve(Request $request, $id)
     {
         // Set status surat menjadi "approved" sesuai dengan kode status yang sesuai
-        $surat2 = Surat2BukuTamu::findOrFail($id);
-        $surat2->id_status_surat = 2; // Misalnya, id_status_surat yang sesuai untuk status "approved"
+
+        $surat2 = Surat2BukuTamu::with([
+            'surat1', 'statusSurat', 'surat1.periode',
+            'surat1.lokasi',
+            'surat1.tamu',
+        ])->find($id);
+        $emailTamu = $surat2->surat1->email_tamu;
+        $surat2->id_status_surat2 = 2; // Misalnya, id_status_surat yang sesuai untuk status "approved"
         $surat2->alasan_surat2 = $request->input('alasan_surat2');
         $surat2->save();
+
+
+
+        // Simpan PDF ke temporary file
+        $pdfPath = storage_path('app/Surat_Kunjungan_MCTN.pdf'); // Sesuaikan dengan path yang sesuai
+        $pdf = PDF::loadview('cetak-suratkantor', compact('surat2'));
+        $pdf->save($pdfPath);
+
+        // Kirim email dengan lampiran PDF
+        Mail::to($emailTamu)->send(new AprovedAdmin($id, $pdfPath));
 
         // Redirect ke halaman sebelumnya atau ke halaman lain
         return redirect()->back()->with('success', 'Surat 2 telah disetujui');
@@ -144,7 +163,7 @@ class AdminJKTController extends Controller
     {
         // Set status surat menjadi "rejected" sesuai dengan kode status yang sesuai
         $surat2 = Surat2BukuTamu::findOrFail($id);
-        $surat2->id_status_surat = 7; // Misalnya, id_status_surat yang sesuai untuk status "rejected"
+        $surat2->id_status_surat2 = 7; // Misalnya, id_status_surat yang sesuai untuk status "rejected"
         $surat2->alasan_surat2 = $request->input('alasan_surat2');
         $surat2->save();
 

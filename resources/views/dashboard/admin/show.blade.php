@@ -14,7 +14,7 @@
                                 <td>{{ $surat2->id_surat_2 }}</td>
                             </tr>
                             <tr>
-                                <th>Kode Unik</th>
+                                <th>Nomor Surat</th>
                                 <td>{{ $surat2->kode_unik }}</td>
                             </tr>
                             <tr>
@@ -28,6 +28,10 @@
                             <tr>
                                 <th>Jam Kedatangan</th>
                                 <td>{{ explode(' ', $surat2->surat1->periode->jam_kedatangan)[1]  }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tujuan</th>
+                                <td>{{ $surat2->surat1->tujuan_keperluan }}</td>
                             </tr>
                             <tr></tr>
 
@@ -61,14 +65,14 @@
                     </div>
 
                     <div class="d-flex">
-                        @if($surat2->id_status_surat === 6)
+                        @if($surat2->id_status_surat2 === 6)
                             <form action="{{ route('admin.approve', $surat2->id_surat_2) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-success me-2" id="btn-approve">Setuju</button>
                             </form>
                         @endif
 
-                        @if($surat2->id_status_surat === 6)
+                        @if($surat2->id_status_surat2 === 6)
                             <form action="{{ route('admin.reject', $surat2->id_surat_2) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-danger" id="btn-reject">Tolak</button>
@@ -100,7 +104,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary my-4">Kembali</a>
+                        <a href="{{ route('adminjkt.persetujuan') }}" class="btn btn-primary my-4">Kembali</a>
 
                     </div>
                 </div>

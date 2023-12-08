@@ -11,65 +11,80 @@
                 <div class="home-tab">
                     <div class="row">
 
-                        <div class="d-flex justify-content-between">
-                            <h2 class="fw-bold mt-4">History Pengajuan</h2>
+                        <h2 class="col fw-bold mt-4">History Pengajuan</h2>
+                        <div class="col">
                             <div class="row form-group">
                                 <div class="col me-2" style="align-items: center;">
-                                    <form method="post" action="{{ route('dashboard.persetujuan.history') }}">
-                                        @csrf
-                                    <label class="" for="search" >Cari Nama Tamu</label>
-                                    <div class="d-flex" style="align-items: center">
-                                        <input type="text" class="form-control me-1 mb-4" id="search">
-                                        <button class="btn btn-info mb-4" type="submit" style="color: white">Cari</button>
-                                    </div>
+                                    <form method="get" action="{{ route('adminduri.history.filter') }}">
+                                        <label class="" for="search">Cari Nama Tamu</label>
+                                        <div class="d-flex" style="align-items: center">
+                                            <input type="text" class="form-control me-1 mb-4" id="search" name="search" value="{{ $namaTamu ?? '' }}">
+                                            <button class="btn mb-4" type="submit" style="background-color: #097b96; color: white">Cari</button>
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <div class="col form-group">
-                                    <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
-                                    <select id="status_surat" class="form-select form-control" name="status_surat">
-                                        <option value="" selected disabled> Status </option>
-                                        <option value="2">Disetujui</option>
-                                        <option value="3">Ditolak</option>
-                                    </select>
+                                <div class="col">
+                                    <form method="get" action="{{ route('adminduri.history.filter') }}">
+                                      <div class="form-group">
+                                          <label for="status_surat" class="form-label">Filter Berdasarkan Status</label>
+                                          <div class="input-group">
+                                            <select id="status_surat" class="form-select form-control" name="status_surat">
+                                                <option value="" >Semua</option>
+                                                <option value="2" @if($statusSurat == 2) selected @endif>Disetujui</option>
+                                                <option value="7" @if($statusSurat == 7) selected @endif>Ditolak</option>
+                                            </select>
+                                            <button class="btn ms-1" type="submit" style="background-color: #097b96; color: white; border-radius: 5px">Filter</button>
+                                          </div>
+                                      </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="container">
-                            <div class="card mt-2">
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama Tamu</th>
-                                                <th>Asal Perusahaan</th>
-                                                <th>Periode</th>
+                    </div>
 
-                                                <th>Status Surat</th>
-                                                <th>Aksi</th>
+                      <div class="container">
+                          <div class="card mt-2">
+                              <div class="card-body">
+                                <div class="table-responsive">
+                                  <table class="table text-center">
+                                      <thead>
+                                          <tr>
+                                              <th>Nama Tamu</th>
+                                              <th>Asal Perusahaan</th>
+                                              <th>Periode</th>
+                                              <th>Status Surat</th>
+                                              <th>Aksi</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($surat1 as $data)
-                                            <tr>
-                                                <td>{{ $data->surat1->nama_tamu }}</td>
-                                <td>{{ $data->surat1->asal_perusahaan }}</td>
-                                <td>{{ $data->surat1->periode->tanggal_masuk->format('d-m-Y') }}
-                                    - {{ $data->surat1->periode->tanggal_keluar->format('d-m-Y') }}</td>
-                                <td>{{ $data->statusSurat->nama_status_surat }}</td>
-                                <td>
-                                    <a href="{{ route('admin.surat2.show', ['id' => $data->id_surat_2]) }}"
-                                       class="btn btn-info">Lihat</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                                        </tbody>
-                                    </table>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach ($surat1 as $data)
+                                          <tr>
+                                              <td>{{ $data->surat1->nama_tamu }}</td>
+                                              <td>{{ $data->surat1->asal_perusahaan }}</td>
+                                              <td>{{ $data->surat1->periode->tanggal_masuk->format('d-m-Y') }}
+                                                  s.d. {{ $data->surat1->periode->tanggal_keluar->format('d-m-Y') }}</td>
+                                              <td>
+                                                @if($data->statusSurat->nama_status_surat == "Disetujui")
+                                                <p class="badge badge-success">{{ $data->statusSurat->nama_status_surat }}</p>
+                                                @elseif($data->statusSurat->nama_status_surat == "Ditolak Admin" )
+                                                <p class="badge badge-danger">{{ $data->statusSurat->nama_status_surat }}</p>
+                                                @endif
+                                              </td>
+                                              <td>
+                                                  <a href="{{ route('adminduri.surat2.history', ['id' => $data->id_surat_2_duri]) }}"
+                                                      class="btn" style="background-color: #097b96; color: white;">Lihat</a>
+                                              </td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
                                 </div>
-                            </div>
+                              </div>
+                          </div>
 
-                        </div>
+                      </div>
 
                     </div>
                     {{-- <div class="col-lg-4 d-flex flex-column">

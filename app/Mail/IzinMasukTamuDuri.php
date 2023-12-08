@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class aprovejkt extends Mailable
+class IzinMasukTamuDuri extends Mailable
 {
     use Queueable, SerializesModels;
     public $surat1_id;
@@ -28,6 +28,6 @@ class aprovejkt extends Mailable
      */
     public function build()
     {
-        return $this->view('approvedpicjkt');
+        return $this->view('approvedpic');
     }
 }
